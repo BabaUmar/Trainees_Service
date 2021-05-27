@@ -7,8 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.amalitech.org.Entity.Track;
 import com.amalitech.org.Entity.Trainee;
+import com.amalitech.org.Entity.TraineeTrack;
+//import com.amalitech.org.Entity.Trainee;
+//import com.amalitech.org.Entity.Trainee;
 import com.amalitech.org.Repository.TrackRepository;
 import com.amalitech.org.Repository.TraineeRepository;
+//import com.amalitech.org.Repository.TraineeRepository;
+//import com.amalitech.org.Repository.TraineeRepository;
+import com.amalitech.org.Repository.TraineeTrackRepository;
 
 
 
@@ -16,9 +22,13 @@ import com.amalitech.org.Repository.TraineeRepository;
 public class TrackService {
 	@Autowired
 	private TrackRepository trackRepository;
-
+	@Autowired
+	private TraineeTrackRepository ttRepository;
 	@Autowired
 	private TraineeRepository traineeRepository;
+	
+
+
 	
 	public Track createTrack(Track track) {
 		return trackRepository.save(track);
@@ -27,21 +37,23 @@ public class TrackService {
 	public List<Track> getTracks() {
 		return (List<Track>) trackRepository.findAll();
 	}
-	public void deleteTrack(Integer id) {
+	
+	public void deleteTrack(int id) {
 		trackRepository.deleteById(id);
 	}
-	public Track getTrack(Integer id) {
+	public Track getTrack(int id) {
 		return trackRepository.findById(id).orElseThrow();
 	}
-	public Track updateTrack(Integer id, Track track) {
+	public Track updateTrack(int id, Track track) {
 		Track trackFound = trackRepository.findById(id).orElseThrow();
 		return trackRepository.save(trackFound);
 	}
-	public void enrollTraineeToTrack(Integer trackId, Integer traineeId) {
-		Track track = trackRepository.findById(trackId).orElseThrow();
-		
-		Trainee trainee = traineeRepository.findById(traineeId)
-				.orElseThrow();
-
+	public void enrollTraineeOnTrack(Integer traineeId, Integer trackId) {
+		Trainee trainee = traineeRepository.findById(traineeId).get();
+		Track track = trackRepository.findById(trackId).get();
+		TraineeTrack tt = new TraineeTrack(trainee, track);
+		ttRepository.save(tt);
+	}
+	
 }
-}
+	

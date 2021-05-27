@@ -7,10 +7,13 @@ import com.amalitech.org.enums.BatchStatus;
 import lombok.Data;
 @Data
 public class BatchDTO {
+	private Integer id;
 	private String name;
 	private BatchStatus batchStatus = BatchStatus.inactivated;
-	private LocalDate beginningDate;
+	private LocalDate startingDate;
 	private LocalDate endingDate;
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -24,10 +27,10 @@ public class BatchDTO {
 		this.batchStatus = batchStatus;
 	}
 	public LocalDate getBeginningDate() {
-		return beginningDate;
+		return startingDate;
 	}
-	public void setBeginningDate(LocalDate beginningDate) {
-		this.beginningDate = beginningDate;
+	public void setBeginningDate(LocalDate startingDate) {
+		this.startingDate = startingDate;
 	}
 	public LocalDate getEndingDate() {
 		return endingDate;

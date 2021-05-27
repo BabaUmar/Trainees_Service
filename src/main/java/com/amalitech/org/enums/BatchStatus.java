@@ -1,7 +1,7 @@
 package com.amalitech.org.enums;
 
 public enum  BatchStatus {
-	inactivated("INACTIVATED"), activated("ACTIVATED"), completed("COMPLETED");
+	inactivated("INACTIVATED"), created("CREATED"), activated("ACTIVATED"), completed("COMPLETED");
 
 	private String batchStatus;
 

@@ -1,15 +1,22 @@
 package com.amalitech.org.Entity;
 
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import lombok.Data;
 
 @Entity
 @Data
 public class Track {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String trackName;
+	
 	private String trackCode;
 	private Boolean isActivated = true;
 	public int getId() {
